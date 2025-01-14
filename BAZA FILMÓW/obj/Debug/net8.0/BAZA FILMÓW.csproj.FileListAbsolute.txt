@@ -1,0 +1,7 @@
+C:\Users\woy22\source\repos\BAZA FILMÓW\BAZA FILMÓW\obj\Debug\net8.0\BAZA FILMÓW.csproj.AssemblyReference.cache
+C:\Users\woy22\source\repos\BAZA FILMÓW\BAZA FILMÓW\obj\Debug\net8.0\BAZA FILMÓW.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\woy22\source\repos\BAZA FILMÓW\BAZA FILMÓW\obj\Debug\net8.0\BAZA FILMÓW.AssemblyInfoInputs.cache
+C:\Users\woy22\source\repos\BAZA FILMÓW\BAZA FILMÓW\obj\Debug\net8.0\BAZA FILMÓW.AssemblyInfo.cs
+C:\Users\woy22\source\repos\BAZA FILMÓW\BAZA FILMÓW\obj\Debug\net8.0\BAZA FILMÓW.csproj.CoreCompileInputs.cache
+C:\Users\woy22\source\repos\BAZA FILMÓW\BAZA FILMÓW\obj\Debug\net8.0\BAZA FILMÓW.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\woy22\source\repos\BAZA FILMÓW\BAZA FILMÓW\obj\Debug\net8.0\BAZA FILMÓW.MvcApplicationPartsAssemblyInfo.cache
