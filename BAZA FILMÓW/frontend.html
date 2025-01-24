@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .movie {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .movie img {
+            max-width: 100px;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+        .movie .info {
+            flex: 1;
+        }
+        .movie h3 {
+            margin: 0 0 10px;
+            color: #444;
+        }
+        .movie p {
+            margin: 0;
+            color: #666;
+        }
+        #controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        #search {
+            flex: 1;
+            margin-right: 10px;
+        }
+        #sortCategory {
+            flex: 1;
+            margin-left: 10px;
+        }
+        #addMovie {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        #addMovie:hover {
+            background-color: #0056b3;
+        }
+        #loadMovies {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        #loadMovies:hover {
+            background-color: #218838;
+        }
+        #movieFormContainer {
+            display: none;
+            margin-top: 20px;
+        }
+        .movie {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+}
+
+.movie:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Filmy</h1>
+        <div id="controls">
+            <input type="text" id="search" placeholder="Szukaj...">
+            <select id="sortCategory" onchange="sortMoviesByCategory()">
+                <option value="">Wszystkie kategorie</option>
+            </select>
+            <button id="loadMovies">Ładuj filmy</button>
+            <button id="addMovie">Dodaj film</button>
+        </div>
+        <div id="movieFormContainer">
+            <h2>Dodaj nowy film</h2>
+            <form id="movieForm">
+                <div>
+                    <label>Tytuł:</label>
+                    <input type="text" id="title" required>
+                </div>
+                <div>
+                    <label>Aktorzy:</label>
+                    <input type="text" id="actors" required>
+                </div>
+                <div>
+                    <label>URL do plakatu:</label>
+                    <input type="text" id="poster" required>
+                </div>
+                <div>
+                    <label>Data wydania:</label>
+                    <input type="date" id="releaseDate" required>
+                </div>
+                <div>
+                    <label>Kategoria:</label>
+                    <select id="category" required>
+                        <option value="Akcja">Akcja</option>
+                        <option value="Komedia">Komedia</option>
+                        <option value="Dramat">Dramat</option>
+                        <option value="Horror">Horror</option>
+                        <option value="Sci-Fi">Sci-Fi</option>
+                        <option value="Romantyczny">Romantyczny</option>
+                        <option value="Thriller">Thriller</option>
+                        <option value="Animacja">Animacja</option>
+                    </select>
+                </div>
+                <button type="submit">Dodaj</button>
+                <button type="button" id="cancel">Anuluj</button>
+            </form>
+        </div>
+        <div id="movies"></div>
+    </div>
+
+    <script>
+        let moviesData = [];
+
+        document.getElementById('loadMovies').addEventListener('click', loadMovies);
+        document.getElementById('addMovie').addEventListener('click', toggleMovieForm);
+        document.getElementById('movieForm').addEventListener('submit', addMovie);
+        document.getElementById('cancel').addEventListener('click', closeModal);
+        document.getElementById('search').addEventListener('input', searchMovies);
+
+        function loadMovies() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'movies.xml', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    const parser = new DOMParser();
+                    const xml = parser.parseFromString(xhr.responseText, 'application/xml');
+                    const movies = Array.from(xml.getElementsByTagName('movie'));
+
+                    moviesData = movies.map(movie => ({
+                        title: movie.getElementsByTagName('title')[0].textContent,
+                        actors: movie.getElementsByTagName('actors')[0].textContent,
+                        poster: movie.getElementsByTagName('poster')[0].textContent,
+                        releaseDate: movie.getElementsByTagName('releaseDate')[0].textContent,
+                        category: movie.getElementsByTagName('category')[0]?.textContent || 'Uncategorized'
+                    }));
+
+                    updateCategoryOptions();
+                    renderMovies();
+                }
+            };
+            xhr.send();
+        }
+
+        function renderMovies(filteredMovies = moviesData) {
+    const sortedMovies = filteredMovies.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
+
+    const output = sortedMovies.map((movie, index) => `
+        <div class="movie" onclick="editMovie(${index})">
+            <img src="${movie.poster}" alt="${movie.title} Poster">
+            <div class="info">
+                <h3>${movie.title}</h3>
+                <p><strong>Obsada:</strong> ${movie.actors}</p>
+                <p><strong>Data Wydania:</strong> ${movie.releaseDate}</p>
+                <p><strong>Kategoria:</strong> ${movie.category}</p>
+            </div>
+        </div>
+    `).join('');
+
+    document.getElementById('movies').innerHTML = output;
+}
+
+        function toggleMovieForm() {
+            const formContainer = document.getElementById('movieFormContainer');
+            formContainer.style.display = formContainer.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('movieFormContainer').style.display = 'none';
+            document.getElementById('movieForm').reset();
+        }
+
+        function addMovie(event) {
+            event.preventDefault();
+
+            const newMovie = {
+                title: document.getElementById('title').value,
+                actors: document.getElementById('actors').value,
+                poster: document.getElementById('poster').value,
+                releaseDate: document.getElementById('releaseDate').value,
+                category: document.getElementById('category').value,
+            };
+
+            moviesData.push(newMovie);
+            updateCategoryOptions();
+            renderMovies();
+            closeModal();
+        }
+
+        function searchMovies(event) {
+            const query = event.target.value.toLowerCase();
+            const filteredMovies = moviesData.filter(movie =>
+                movie.title.toLowerCase().includes(query) ||
+                movie.actors.toLowerCase().includes(query)
+            );
+
+            renderMovies(filteredMovies);
+        }
+
+        function updateCategoryOptions() {
+            const uniqueCategories = Array.from(new Set(moviesData.map(movie => movie.category)));
+            const categorySelect = document.getElementById('sortCategory');
+            categorySelect.innerHTML = '<option value="">Wszystkie kategorie</option>' +
+                uniqueCategories.map(category => `<option value="${category}">${category}</option>`).join('');
+        }
+
+        function sortMoviesByCategory() {
+            const selectedCategory = document.getElementById('sortCategory').value;
+            const filteredMovies = selectedCategory ?
+                moviesData.filter(movie => movie.category === selectedCategory) :
+                moviesData;
+
+            renderMovies(filteredMovies);
+        }
+        
+        function editMovie(index) {
+    const movie = moviesData[index];
+
+    // Fill the form with the movie's current data
+    document.getElementById('title').value = movie.title;
+    document.getElementById('actors').value = movie.actors;
+    document.getElementById('poster').value = movie.poster;
+    document.getElementById('releaseDate').value = movie.releaseDate;
+    document.getElementById('category').value = movie.category;
+
+    // Show the form
+    document.getElementById('movieFormContainer').style.display = 'block';
+
+    // Update the "Save" button to save changes instead of adding a new movie
+    document.getElementById('movieForm').onsubmit = function (event) {
+        event.preventDefault();
+
+        // Update the movie data
+        moviesData[index] = {
+            title: document.getElementById('title').value,
+            actors: document.getElementById('actors').value,
+            poster: document.getElementById('poster').value,
+            releaseDate: document.getElementById('releaseDate').value,
+            category: document.getElementById('category').value,
+        };
+
+        // Rerender movies and close the form
+        renderMovies();
+        closeModal();
+    };
+}
+
+    </script>
+</body>
+</html>
