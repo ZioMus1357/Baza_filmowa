@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<movies>
+    <movie>
+        <title>Inception</title>
+        <actors>Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page</actors>
+        <poster>https://example.com/inception.jpg</poster>
+        <releaseDate>2010-07-16</releaseDate>
+        <category>Sci-Fi</category>
+    </movie>
+    <movie>
+        <title>The Dark Knight</title>
+        <actors>Christian Bale, Heath Ledger, Aaron Eckhart</actors>
+        <poster>https://example.com/darkknight.jpg</poster>
+        <releaseDate>2008-07-18</releaseDate>
+        <category>Akcja</category>
+    </movie>
+    <movie>
+        <title>Interstellar</title>
+        <actors>Matthew McConaughey, Anne Hathaway, Jessica Chastain</actors>
+        <poster>https://example.com/interstellar.jpg</poster>
+        <releaseDate>2014-11-07</releaseDate>
+        <category>Sci-Fi</category>
+    </movie>
+    <movie>
+        <title>Forrest Gump</title>
+        <actors>Tom Hanks, Robin Wright, Gary Sinise</actors>
+        <poster>https://example.com/forrestgump.jpg</poster>
+        <releaseDate>1994-07-06</releaseDate>
+        <category>Dramat</category>
+    </movie>
+    <movie>
+        <title>The Matrix</title>
+        <actors>Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss</actors>
+        <poster>https://example.com/matrix.jpg</poster>
+        <releaseDate>1999-03-31</releaseDate>
+        <category>Sci-Fi</category>
+    </movie>
+    <movie>
+        <title>Avengers: Endgame</title>
+        <actors>Robert Downey Jr., Chris Evans, Scarlett Johansson</actors>
+        <poster>https://example.com/avengers.jpg</poster>
+        <releaseDate>2019-04-26</releaseDate>
+        <category>Akcja</category>
+    </movie>
+    <movie>
+        <title>Titanic</title>
+        <actors>Leonardo DiCaprio, Kate Winslet, Billy Zane</actors>
+        <poster>https://example.com/titanic.jpg</poster>
+        <releaseDate>1997-12-19</releaseDate>
+        <category>Romantyczny</category>
+    </movie>
+    <movie>
+        <title>The Godfather</title>
+        <actors>Marlon Brando, Al Pacino, James Caan</actors>
+        <poster>https://example.com/godfather.jpg</poster>
+        <releaseDate>1972-03-24</releaseDate>
+        <category>Dramat</category>
+    </movie>
+    <movie>
+        <title>Parasite</title>
+        <actors>Song Kang-ho, Lee Sun-kyun, Cho Yeo-jeong</actors>
+        <poster>https://example.com/parasite.jpg</poster>
+        <releaseDate>2019-05-30</releaseDate>
+        <category>Thriller</category>
+    </movie>
+    <movie>
+        <title>Shrek</title>
+        <actors>Mike Myers, Eddie Murphy, Cameron Diaz</actors>
+        <poster>https://example.com/shrek.jpg</poster>
+        <releaseDate>2001-05-18</releaseDate>
+        <category>Komedia</category>
+    </movie>
+    <movie>
+        <title>Frozen</title>
+        <actors>Kristen Bell, Idina Menzel, Josh Gad</actors>
+        <poster>https://example.com/frozen.jpg</poster>
+        <releaseDate>2013-11-27</releaseDate>
+        <category>Animacja</category>
+    </movie>
+    <movie>
+        <title>Joker</title>
+        <actors>Joaquin Phoenix, Robert De Niro, Zazie Beetz</actors>
+        <poster>https://example.com/joker.jpg</poster>
+        <releaseDate>2019-10-04</releaseDate>
+        <category>Dramat</category>
+    </movie>
+    <movie>
+        <title>Black Panther</title>
+        <actors>Chadwick Boseman, Michael B. Jordan, Lupita Nyong'o</actors>
+        <poster>https://example.com/blackpanther.jpg</poster>
+        <releaseDate>2018-02-16</releaseDate>
+        <category>Akcja</category>
+    </movie>
+    <movie>
+        <title>The Lion King</title>
+        <actors>Matthew Broderick, Jeremy Irons, James Earl Jones</actors>
+        <poster>https://example.com/lionking.jpg</poster>
+        <releaseDate>1994-06-24</releaseDate>
+        <category>Animacja</category>
+    </movie>
+    <movie>
+        <title>It</title>
+        <actors>Bill Skarsgård, Jaeden Martell, Finn Wolfhard</actors>
+        <poster>https://example.com/it.jpg</poster>
+        <releaseDate>2017-09-08</releaseDate>
+        <category>Horror</category>
+    </movie>
+    <movie>
+        <title>Finding Nemo</title>
+        <actors>Albert Brooks, Ellen DeGeneres, Alexander Gould</actors>
+        <poster>https://example.com/nemo.jpg</poster>
+        <releaseDate>2003-05-30</releaseDate>
+        <category>Animacja</category>
+    </movie>
+    <movie>
+        <title>Iron Man</title>
+        <actors>Robert Downey Jr., Gwyneth Paltrow, Jeff Bridges</actors>
+        <poster>https://example.com/ironman.jpg</poster>
+        <releaseDate>2008-05-02</releaseDate>
+        <category>Akcja</category>
+    </movie>
+    <movie>
+        <title>Get Out</title>
+        <actors>Daniel Kaluuya, Allison Williams, Bradley Whitford</actors>
+        <poster>https://example.com/getout.jpg</poster>
+        <releaseDate>2017-02-24</releaseDate>
+        <category>Thriller</category>
+    </movie>
+    <movie>
+        <title>Moana</title>
+        <actors>Auli'i Cravalho, Dwayne Johnson, Rachel House</actors>
+        <poster>https://example.com/moana.jpg</poster>
+        <releaseDate>2016-11-23</releaseDate>
+        <category>Animacja</category>
+    </movie>
+    <movie>
+        <title>Avatar</title>
+        <actors>Sam Worthington, Zoe Saldana, Sigourney Weaver</actors>
+        <poster>https://example.com/avatar.jpg</poster>
+        <releaseDate>2009-12-18</releaseDate>
+        <category>Sci-Fi</category>
+    </movie>
+</movies>
